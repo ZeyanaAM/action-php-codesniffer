@@ -20,6 +20,8 @@ export async function getChangedFiles(): Promise<ChangedFiles> {
   const isMatch = picomatch(globs);
   console.log('Filter patterns:', globs, isMatch('src/test.php'));
   const payload = github.context.payload as Webhooks.WebhookPayloadPullRequest;
+  console.log('payload: ', payload);
+  console.log('base sha:', payload.pull_request.base.sha);
 
   /*
     getting them from Git
@@ -40,7 +42,7 @@ export async function getChangedFiles(): Promise<ChangedFiles> {
       {
         windowsHide: true,
         timeout: 5000,
-      }
+      },
     );
     const readline = createInterface({
       input: git.stdout,

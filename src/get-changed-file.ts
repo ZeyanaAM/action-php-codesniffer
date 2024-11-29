@@ -18,7 +18,8 @@ export async function getChangedFiles(): Promise<ChangedFiles> {
   });
   const globs = pattern.length ? pattern.split(',') : ['**.php'];
   const isMatch = picomatch(globs);
-  console.log('Filter patterns:', globs, isMatch('src/test.php'));
+  console.log('Filter patterns are:', globs, isMatch('src/test.php'));
+  console.log('getting payload');
   const payload = github.context.payload as Webhooks.WebhookPayloadPullRequest;
   console.log('payload: ', payload);
   console.log('base sha:', payload.pull_request.base.sha);
